@@ -1,0 +1,15 @@
+services:
+  accounts:
+    image: "acmebank/account:v1"
+    container_name: account-ms
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - acmebank
+networks:
+  acmebank:
+    driver: "bridge"
