@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,18 +29,6 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     private AccountManagerService accountManagerService;
-
-    /*
-    @Operation(
-            summary = "Test Method for API",
-            description = "Test API"
-    )
-    @GetMapping("/testing")
-    public String hello(){
-        return "hello";
-    }
-
-*/
 
     @Operation(
             summary = "Fetch Account Balance REST API",
@@ -80,7 +69,7 @@ public class AccountController {
 
 
     @PostMapping("/transfer")
-    public AccountDto transfer(@RequestBody TransferRequestDto transferRequestDto
+    public AccountDto transfer(@Valid @RequestBody TransferRequestDto transferRequestDto
     ) {
         return accountManagerService.transfer(transferRequestDto);
     }

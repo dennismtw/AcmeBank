@@ -1,6 +1,6 @@
 services:
   accounts:
-    image: "acmebank/account:v1"
+    image: "acmebank/account"
     container_name: account-ms
     ports:
       - "8080:8080"
