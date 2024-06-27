@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Schema(
-        name = "Transfer Detail DTO",
-        description = "Schema to hold Transfer Detail information"
+        name = "Transaction Detail DTO",
+        description = "Schema to hold Transaction Detail information"
 )
 public class TransactionDetailDto {
 
@@ -18,21 +18,25 @@ public class TransactionDetailDto {
     )
     private String txnNo;
     @Schema(
-            description = "Sender Acc No", example = "TXN_94DD9CFB69C24A7588B3589BD0E57647"
+            description = "Sender Acc No", example = "12345678"
     )
     private Long senderAccNo;
+
     @Schema(
-            description = "Receiver Acc No", example = "TXN_94DD9CFB69C24A7588B3589BD0E57647"
+            description = "Receiver Acc No", example = "88888888"
     )
     private Long receiverAccNo;
+
     @Schema(
             description = "Sender Acc Currency Code", example = "HKD"
     )
     private String currencyCode;
+
     @Schema(
             description = "Transaction Amount", example = "100.00"
     )
     private BigDecimal amount;
+
     @Schema(
             description = "Transaction timestamp", example = "2024-06-27T14:50:44.1266962"
     )

@@ -68,6 +68,11 @@ public class AccountApplicationTests {
 		assertEquals("HKD", accountManagerServiceImpl.getAccBalByCustId(1L).getCurrencyCode());
 	}
 
+	@Test(expected = AccountNotExistException.class)
+	public void testGetAccBalByCustIdNotExist() {
+		assertEquals(BigDecimal.valueOf(100.000), accountManagerServiceImpl.getAccBalByCustId(5L).getAccBalance());
+	}
+
 	@Test
 	public void testGetAccBalByAccNo() {
 		when(accountRepository.findById(88888888L)).thenReturn(Optional.of(testAcc2));
@@ -75,6 +80,13 @@ public class AccountApplicationTests {
 		assertEquals("HKD", accountManagerServiceImpl.getAccBalByAccNo(88888888L).getCurrencyCode());
 	}
 
+	@Test(expected = AccountNotExistException.class)
+	public void testGetAccBalByAccNoNotExist() {
+		assertEquals(BigDecimal.valueOf(200.000), accountManagerServiceImpl.getAccBalByAccNo(66666666L).getAccBalance());
+	}
+
+
+	// Test Money Transfer
 	@Test
 	public void testTransfer() {
 		//Set From Account Balance for test
@@ -97,6 +109,7 @@ public class AccountApplicationTests {
 		assertEquals(BigDecimal.valueOf(200.000), testAcc2.getAccBalance());
 	}
 
+	// Test OverDraft Not Match
 	@Test(expected = OverDraftException.class)
 	public void testTransferOverdraft()	{
 		//Set From Account Balance for test
@@ -115,6 +128,7 @@ public class AccountApplicationTests {
 		accountManagerServiceImpl.transfer(transferRequest);
 	}
 
+	// Test Currency Not Match
 	@Test(expected = CcyCodeNotMatchException.class)
 	public void testTransferAccountCurrencyNotMatch()	{
 		//Set From Account Balance for test
@@ -133,6 +147,7 @@ public class AccountApplicationTests {
 		accountManagerServiceImpl.transfer(transferRequest);
 	}
 
+	// Test Account Not exist in system
 	@Test(expected = AccountNotExistException.class)
 	public void testTransferAccountNotExist()	{
 		//Set From Account Balance for test
