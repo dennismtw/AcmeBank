@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
 public class Account extends BaseEntity {
 
-    @Column(name = "acc_no")
     @Id
+    @Column(name = "acc_no")
     private Long accNo;
 
     @Column(name = "customer_id")

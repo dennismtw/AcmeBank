@@ -52,7 +52,7 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolation(
-            ConstraintViolationException ex, WebRequest request) {
+             ConstraintViolationException ex, WebRequest request) {
         List<String> errors = new ArrayList<String>();
         for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
             errors.add(violation.getMessage());
