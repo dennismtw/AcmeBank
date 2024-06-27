@@ -1,14 +1,13 @@
 package com.acmebank.banking.account.service;
 
 import com.acmebank.banking.account.dto.AccountDto;
+import com.acmebank.banking.account.dto.TransactionDetailDto;
 import com.acmebank.banking.account.dto.TransferRequestDto;
-import com.acmebank.banking.account.entity.Account;
-
-import java.math.BigDecimal;
+import com.acmebank.banking.account.entity.TransactionDetail;
 
 public interface AccountManagerService {
 
-    public AccountDto transfer (TransferRequestDto transferRequestDto);
+    public TransactionDetailDto transfer (TransferRequestDto transferRequestDto);
 
     public AccountDto getAccBalByCustId (Long customerId);
 
