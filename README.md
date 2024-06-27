@@ -1,13 +1,19 @@
+### Git Hub Link
+https://github.com/dennismtw/AcmeBank.git
+
+Checkout Project and Run AcmeBank\src\main\java\com\acmebank\banking\account\AccountApplication.java
+
+For first time execution, database schema and init data will be executed in resource folder:
+schema.sql and data.sql
+
+### Junit Test Case
+AccountApplicationTests
+
 ### H2 Database:
 http://localhost:8080/h2-console/
 jdbc:h2:~/acmebank
 username: sa
 password: ''
-
-For first time execution, database schema and init data will be executed in resource folder:
-schema.sql and data.sql
-Please remove the data.sql file or rename to data.sql for it after the first execution to avoid data insertion error
-account\src\main\resources\data.sql
 
 Reset db execute below:
 DROP ALL OBJECTS
@@ -29,3 +35,4 @@ GlobalExceptionHandler handleBusinessException method
 ### Init Customer ID
 Customer ID: 1 for Account No:12345678
 Customer ID: 2 for Account No:88888888
+Customer ID: 3 for Account No:99999999
