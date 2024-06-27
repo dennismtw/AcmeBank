@@ -16,13 +16,22 @@ public class AccountDto {
             description = "Account Number of Acme Bank account", example = "12345678"
     )
     private Long accNo;
+    @Schema(
+            description = "Customer ID of Acme Bank account", example = "1"
+    )
     private Long customerId;
 
     @Schema(
             description = "Account type of Acme Bank account", example = "Savings/Current"
     )
     private String accType;
+    @Schema(
+            description = "Account Currency Code", example = "HKD"
+    )
     private String currencyCode;
+    @Schema(
+            description = "Account Balance", example = "1000000.000"
+    )
     private BigDecimal accBalance;
 
 }
