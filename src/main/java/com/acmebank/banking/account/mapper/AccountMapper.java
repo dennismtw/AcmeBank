@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 public class AccountMapper {
 
     public static AccountDto mapToAccountDto(Account account, AccountDto accountDto) {
-        BeanUtils.copyProperties(account,accountDto );
+        BeanUtils.copyProperties(account,accountDto);
         return accountDto;
     }
 
@@ -15,5 +15,4 @@ public class AccountMapper {
         BeanUtils.copyProperties(accountsDto,account);
         return account;
     }
-
 }

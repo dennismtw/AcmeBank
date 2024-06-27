@@ -4,7 +4,6 @@ import com.acmebank.banking.account.dto.AccountDto;
 import com.acmebank.banking.account.dto.ErrorResponseDto;
 import com.acmebank.banking.account.dto.TransactionDetailDto;
 import com.acmebank.banking.account.dto.TransferRequestDto;
-import com.acmebank.banking.account.entity.TransactionDetail;
 import com.acmebank.banking.account.service.AccountManagerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -33,8 +32,8 @@ public class AccountController {
     private AccountManagerService accountManagerService;
 
     @Operation(
-            summary = "Get Account Balance Detail by customer REST API",
-            description = "REST API to fetch Account details based on a custoemr id"
+            summary = "Get Account Balance Detail by Customer ID REST API",
+            description = "REST API to fetch Account details based on a Customer ID"
     )
     @ApiResponses({
             @ApiResponse(

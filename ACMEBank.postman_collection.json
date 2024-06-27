@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "GetAccBalByCustId",
+			"name": "getAccBalByCustId",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -45,7 +45,7 @@
 			"response": []
 		},
 		{
-			"name": "GetAccBalByAccNo",
+			"name": "accounts",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -62,7 +62,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/getAccBalByAccNo?accNo=88888888",
+					"raw": "http://localhost:8080/api/accounts/12345678",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -70,26 +70,21 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"getAccBalByAccNo"
-					],
-					"query": [
-						{
-							"key": "accNo",
-							"value": "88888888"
-						}
+						"accounts",
+						"12345678"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Transfer",
+			"name": "transfer",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"fromAccNo\": 12345678,\r\n  \"toAccNo\": 88888888,\r\n  \"amount\": 200\r\n}",
+					"raw": "{\r\n  \"fromAccNo\": 12345678,\r\n  \"toAccNo\": 88888888,\r\n  \"amount\": 100.000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

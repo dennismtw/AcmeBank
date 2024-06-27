@@ -5,9 +5,9 @@ username: sa
 password: ''
 
 For first time execution, database schema and init data will be executed in resource folder:
-schema.sql and init-data.sql
-Please remove the init-data.sql file or rename to init-data.sql for it after the first execution to avoid data insertion error
-account\src\main\resources\init-data.sql
+schema.sql and data.sql
+Please remove the data.sql file or rename to data.sql for it after the first execution to avoid data insertion error
+account\src\main\resources\data.sql
 
 Reset db execute below:
 DROP ALL OBJECTS
