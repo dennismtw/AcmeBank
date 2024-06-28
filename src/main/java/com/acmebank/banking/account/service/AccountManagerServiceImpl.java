@@ -39,11 +39,10 @@ public class AccountManagerServiceImpl implements AccountManagerService {
         Long toAccNo = transferRequestDto.getToAccNo();
         BigDecimal transferAmt = transferRequestDto.getAmount();
 
-        Account senderAcc = accountRepository.findById(frmAccNo).orElseThrow(() -> new AccountNotExistException("Sender Account not found in system:" + frmAccNo +
-                " does not exist.", ErrorCode.ACCOUNT_ERROR));
-
-        Account receiverAcc = accountRepository.findById(toAccNo).orElseThrow(() -> new AccountNotExistException("Receiver Account not found in system:" + frmAccNo +
-                " does not exist.", ErrorCode.ACCOUNT_ERROR));
+        Account senderAcc = accountRepository.findById(frmAccNo).orElseThrow(() -> new AccountNotExistException(
+                MessageFormat.format(ErrorMessage.SENDER_ACC_NO_NOT_EXIST, frmAccNo), ErrorCode.ACCOUNT_ERROR));
+        Account receiverAcc = accountRepository.findById(toAccNo).orElseThrow(() -> new AccountNotExistException(
+                MessageFormat.format(ErrorMessage.RECEIVER_ACC_NO_NOT_EXIST, toAccNo), ErrorCode.ACCOUNT_ERROR));
 
         BigDecimal senderCurrBalance = senderAcc.getAccBalance();
         BigDecimal receiverBalance = receiverAcc.getAccBalance();
@@ -51,11 +50,11 @@ public class AccountManagerServiceImpl implements AccountManagerService {
         String receiverAccCcyCode = receiverAcc.getCurrencyCode();
 
         if(senderCurrBalance.compareTo(transferAmt) < 0) {
-            throw new OverDraftException("Sender Account:" + frmAccNo + " does not have enough balance: " + transferAmt , ErrorCode.ACCOUNT_ERROR);
+            throw new OverDraftException(MessageFormat.format(ErrorMessage.SENDER_NOT_ENOUGH_BALANCE, frmAccNo, transferAmt) , ErrorCode.ACCOUNT_ERROR);
         }
-
         if(!senderAccCcyCode.equals(receiverAccCcyCode)) {
-            throw new CcyCodeNotMatchException("sender account currency " + senderAccCcyCode + " does not match receiver account currency " + receiverAccCcyCode , ErrorCode.ACCOUNT_ERROR);
+            throw new CcyCodeNotMatchException(MessageFormat.format(ErrorMessage.SENDER_RECEIVER_CURRENCY_NOT_MATCH, senderAccCcyCode,receiverAccCcyCode)
+            , ErrorCode.ACCOUNT_ERROR);
         }
 
         senderAcc.setAccBalance(senderCurrBalance.subtract(transferAmt));
