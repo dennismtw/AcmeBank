@@ -1,6 +1,7 @@
 package com.acmebank.banking.account.service;
 
 import com.acmebank.banking.account.constants.ErrorCode;
+import com.acmebank.banking.account.constants.ErrorMessage;
 import com.acmebank.banking.account.dto.AccountDto;
 import com.acmebank.banking.account.dto.TransactionDetailDto;
 import com.acmebank.banking.account.dto.TransferRequestDto;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 
 @Service
@@ -70,23 +72,18 @@ public class AccountManagerServiceImpl implements AccountManagerService {
         txnDetail.setAmount(transferAmt);
         txnDetail.setTransferDt(LocalDateTime.now());
         transactionDetailRepository.save(txnDetail);
-        TransactionDetailDto transactionDetailDto = TransactionDetailMapper.mapToDetailDto(txnDetail, new TransactionDetailDto());
 
-        return transactionDetailDto;
+        return TransactionDetailMapper.mapToDetailDto(txnDetail, new TransactionDetailDto());
     }
 
     public AccountDto getAccBalByCustId(Long customerId) {
-        Account account = accountRepository.findByCustomerId(customerId).orElseThrow(() -> new AccountNotExistException("Account with customer id:" + customerId +
-                " does not exist.", ErrorCode.ACCOUNT_ERROR, HttpStatus.NOT_FOUND));
-        AccountDto accountDto = AccountMapper.mapToAccountDto(account, new AccountDto());
-        return accountDto;
+        Account account = accountRepository.findByCustomerId(customerId).orElseThrow(() -> new AccountNotExistException(MessageFormat.format(ErrorMessage.ACCT_WITH_CUST_ID_NOT_EXIST, customerId), ErrorCode.ACCOUNT_ERROR, HttpStatus.NOT_FOUND));
+        return AccountMapper.mapToAccountDto(account, new AccountDto());
     }
 
     public AccountDto getAccBalByAccNo(Long accNo) {
-        Account account = accountRepository.findById(accNo).orElseThrow(() -> new AccountNotExistException("Account with acc no:" + accNo +
-                " does not exist.", ErrorCode.ACCOUNT_ERROR, HttpStatus.NOT_FOUND));
-        AccountDto accountDto = AccountMapper.mapToAccountDto(account, new AccountDto());
-        return accountDto;
+        Account account = accountRepository.findById(accNo).orElseThrow(() -> new AccountNotExistException(MessageFormat.format(ErrorMessage.ACCT_WITH_ACC_NO_NOT_EXIST, accNo), ErrorCode.ACCOUNT_ERROR, HttpStatus.NOT_FOUND));
+        return AccountMapper.mapToAccountDto(account, new AccountDto());
     }
 
 }
